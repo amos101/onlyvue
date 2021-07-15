@@ -9,92 +9,91 @@
 </template>
 
 <script>
-import axios from "axios";
-export default {
-  data() {
-    return {
-      title: "",
-      comment: "",
-      post: [],
-      posts: [],
-      inputData: {},
-      panel: [],
-    };
-  }, 
+// import axios from "axios";
+// export default {
+//   data() {
+//     return {
+//       title: "",
+//       comment: "",
+//       post: {},
+//       posts: [],
+//       inputData: {},
+//       panel: [],
+//     };
+//   }, 
 
-  created() {
-    // 第一引数は取得したいURL、第二引数は設定
-      axios.get(        
-        '/comments',
-      )
-      .then(response => {
-        this.posts = response.data.documents;
+//   created() {
+//     // 第一引数は取得したいURL、第二引数は設定
+//       axios.get(        
+//         '/comments',
+//       )
+//       .then(response => {
+//         this.posts = response.data.documents;
         
-      });
-    },
-    
-  methods: {
-    // all() {
-    //   this.panel = [...Array(this.posts.length).keys()].map((k, i) => i)
-    // },
-    // none() {
-    //   this.panel = []
-    // },
-    createComment(){
-      // let formData = new FormData();
-      // formData.append("post[comment]", this.comment);
-      // formData.append("post[title]", this.title);
-      // console.log('formData is', formData)
-      // postは第一引数はURL、第二引数は送りたいデータ、第三引数を書く場合は設定を書ける
-      axios.post(
-        '/comments',
-          // formData,
-          {
-            fields:{
-              title: {
-                stringValue: this.title
-              },
-              comment: {
-                stringValue: this.comment
-              }
-            }
-          }
-        )
+//       });
+//     },
+//   methods: {
+//     // all() {
+//     //   this.panel = [...Array(this.posts.length).keys()].map((k, i) => i)
+//     // },
+//     // none() {
+//     //   this.panel = []
+//     // },
+//     createComment(){
+//       // let formData = new FormData();
+//       // formData.append("post[comment]", this.comment);
+//       // formData.append("post[title]", this.title);
+//       // console.log('formData is', formData)
+//       // postは第一引数はURL、第二引数は送りたいデータ、第三引数を書く場合は設定を書ける
+//       axios.post(
+//         '/comments',
+//           // formData,
+//           {
+//             fields:{
+//               title: {
+//                 stringValue: this.title
+//               },
+//               comment: {
+//                 stringValue: this.comment
+//               }
+//             }
+//           }
+//         )
         
-    }
-  },
-  // mounted: function(){
-  //    axios.get("http://127.0.0.1:3000/api/v1/posts/")
-  //     .then(res => {
-  //       this.posts = res.data.data
-  //     })
-  //     .catch(err => {
-  //       console.log(err)
-  //     })
-  // },
-  computed: {
-    // 配列の要素順番を逆順にする
-    reverseposts() {
-        return this.posts.slice().reverse();
-    },
-  },
+//     }
+//   },
+//   // mounted: function(){
+//   //    axios.get("http://127.0.0.1:3000/api/v1/posts/")
+//   //     .then(res => {
+//   //       this.posts = res.data.data
+//   //     })
+//   //     .catch(err => {
+//   //       console.log(err)
+//   //     })
+//   // },
+//   computed: {
+//     // 配列の要素順番を逆順にする
+//     reverseposts() {
+//         return this.posts.slice().reverse();
+//     },
+//   },
 
 
 
-  // created() { 
-  //     axios.get("http://127.0.0.1:3000/api/v1/posts/" + this.$route.params.id)
-  //     .then(res => {
-  //       this.post = res.data.data
-  //       console.log('post is', this.post)
-  //     })
-  //     .catch(err => {
-  //       console.log('error is ',err)
-  //     })
-  // }
+//   // created() { 
+//   //     axios.get("http://127.0.0.1:3000/api/v1/posts/" + this.$route.params.id)
+//   //     .then(res => {
+//   //       this.post = res.data.data
+//   //       console.log('post is', this.post)
+//   //     })
+//   //     .catch(err => {
+//   //       console.log('error is ',err)
+//   //     })
+//   // }
   
 
-};
-</script>
+// };
+// </script>
 
 <style>
 #app {

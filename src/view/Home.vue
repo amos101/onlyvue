@@ -31,7 +31,7 @@
         </div>
         
         <v-expansion-panels v-model="panel" multiple>
-          <v-expansion-panel v-for="post in posts" :key="post.title">
+          <v-expansion-panel v-for="post in posts" :key="post.id">
             <v-expansion-panel-header> 
               {{ post.fields.title.stringValue }}
             </v-expansion-panel-header>
@@ -42,7 +42,7 @@
         </v-expansion-panels>
       </div>
 
-        <div v-for="post in reverseposts" :key="post.id">
+        <div v-for="post in posts" :key="post.id">
           <!-- <a :href="'/show/' + post.id ">{{ post.title }}</a> -->
         </div>
     </div>
@@ -53,25 +53,19 @@ import axios from "axios";
 export default {
   data() {
     return {
+      // 空string,文字列
       title: "",
       comment: "",
-      post: [],
+      // 空配列
+      post: {},
+      // {}はオブジェクト
       posts: [],
       inputData: {},
       panel: [],
     };
   }, 
-
-  created() {
-    // 第一引数は取得したいURL、第二引数は設定
-      axios.get(        
-        '/comments',
-      )
-      .then(response => {
-        this.posts = response.data.documents;
-        
-      });
-    },
+  
+  
   methods: {
     all() {
       this.panel = [...Array(this.posts.length).keys()].map((k, i) => i)
@@ -95,11 +89,22 @@ export default {
               },
               comment: {
                 stringValue: this.comment
+              },
+              created_at: {
+                timestampValue: new Date()
               }
             }
           }
         )
-        
+        .then(response =>{
+            console.log(response.data.fields);
+            // リロードしたい場合
+            location.reload();
+            // this.posts.push(response.data.fields)
+          })  
+        .catch(err => {
+          console.log('error is', err)
+        })
     }
   },
   mounted: function(){
@@ -111,12 +116,13 @@ export default {
         console.log(err)
       })
   },
-  computed: {
-    // 配列の要素順番を逆順にする
-    reverseposts() {
-        return this.posts.slice().reverse();
-    },
-  },
+  // computed: {
+  //   // 配列の要素順番を逆順にする
+  //   reverseposts() {
+  //       return this.posts.slice().reverse();
+  //   },
+  // },
+  
 
 
 
