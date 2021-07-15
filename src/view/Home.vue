@@ -31,7 +31,7 @@
         </div>
         
         <v-expansion-panels v-model="panel" multiple>
-          <v-expansion-panel v-for="post in posts" :key="post.id">
+          <v-expansion-panel v-for="post in reverseposts" :key="post.id">
             <v-expansion-panel-header> 
               {{ post.fields.title.stringValue }}
             </v-expansion-panel-header>
@@ -42,7 +42,7 @@
         </v-expansion-panels>
       </div>
 
-        <div v-for="post in posts" :key="post.id">
+        <div v-for="post in reverseposts" :key="post.id">
           <!-- <a :href="'/show/' + post.id ">{{ post.title }}</a> -->
         </div>
     </div>
@@ -116,12 +116,19 @@ export default {
         console.log(err)
       })
   },
-  // computed: {
-  //   // 配列の要素順番を逆順にする
-  //   reverseposts() {
-  //       return this.posts.slice().reverse();
-  //   },
-  // },
+  computed: {
+    // 配列の要素順番を逆順にする,
+    reverseposts() {
+      this.posts.sort(function(a, b){
+        if (a.createTime < b.createTime){
+          return 1;
+        }else {
+          return -1;
+        }
+      });
+        return this.post
+    },
+  },
   
 
 
