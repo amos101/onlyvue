@@ -126,7 +126,7 @@ export default {
           return -1;
         }
       });
-        return this.post
+        return this.posts
     },
   },
   
