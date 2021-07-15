@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3>English日記</h3>
+        <h3>English Todos</h3>
         <label for="title">title</label><br>
 
         <input class="titletext"
